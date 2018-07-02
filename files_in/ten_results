@@ -1,0 +1,75 @@
+{
+  "publications": [
+    {
+      "title": "Open Data Meets Digital Curation: An Investigation of Practices and Needs",
+      "doi": "10.2218/ijdc.v11i2.403",
+      "open_access": [
+        "Open Access all",
+        "Open Access at publisher"
+      ]
+    },
+    {
+      "title": "More Than a Text Message: Dismantling Digital Triggers to Curate Behavior Change in Patient-Centered Health Interventions.",
+      "doi": "10.2196/jmir.7463",
+      "open_access": [
+        "Open Access all",
+        "Open Access at publisher"
+      ]
+    },
+    {
+      "title": "Curating a Digital Identity: What Urologists Need to Know About Social Media",
+      "doi": "10.1016/j.urology.2016.06.020"
+    },
+    {
+      "title": "Tech Tools for Your Treatment Team",
+      "doi": "10.1044/leader.ov.19082014.np"
+    },
+    {
+      "title": "The Software Ontology (SWO): a resource for reproducibility in biomedical data analysis, curation and digital preservation",
+      "doi": "10.1186/2041-1480-5-25",
+      "open_access": [
+        "Open Access all",
+        "Open Access at publisher"
+      ]
+    },
+    {
+      "title": "Competencies Required for Digital Curation: An Analysis of Job Advertisements",
+      "doi": "10.2218/ijdc.v8i1.242",
+      "open_access": [
+        "Open Access all",
+        "Open Access at publisher"
+      ]
+    },
+    {
+      "title": "UK health performance: findings of the Global Burden of Disease Study 2010",
+      "doi": "10.1016/s0140-6736(13)60355-4"
+    },
+    {
+      "title": "Surveillance Intervals for Small Abdominal Aortic Aneurysms: A Meta-analysis",
+      "doi": "10.1001/jama.2013.950",
+      "open_access": [
+        "Open Access all",
+        "Open Access at publisher"
+      ]
+    },
+    {
+      "title": "Aggregate-then-Curate: how digital learning champions help communities nurture online content",
+      "doi": "10.3402/rlt.v20i0.18677",
+      "open_access": [
+        "Open Access all",
+        "Open Access at publisher"
+      ]
+    },
+    {
+      "title": "Digital Curation for Science, Digital Libraries, and Individuals",
+      "doi": "10.2218/ijdc.v1i1.2",
+      "open_access": [
+        "Open Access all",
+        "Open Access at publisher"
+      ]
+    }
+  ],
+  "_stats": {
+    "total_count": 10
+  }
+}

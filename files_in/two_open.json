@@ -1,0 +1,23 @@
+{
+  "publications": [
+    {
+      "title": "Open Data Meets Digital Curation: An Investigation of Practices and Needs",
+      "doi": "10.2218/ijdc.v11i2.403",
+      "open_access": [
+        "Open Access all",
+        "Open Access at publisher"
+      ]
+    },
+    {
+      "title": "Surveillance Intervals for Small Abdominal Aortic Aneurysms: A Meta-analysis",
+      "doi": "10.1001/jama.2013.950",
+      "open_access": [
+        "Open Access all",
+        "Open Access at publisher"
+      ]
+    }
+  ],
+  "_stats": {
+    "total_count": 2
+  }
+}
