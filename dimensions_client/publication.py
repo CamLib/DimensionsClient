@@ -4,7 +4,8 @@ class Publication:
 
         self.__doi = None
         self.__title = None
-        self.__is_open = False
+        self.__known_to_be_open = False
+        self.__open_access_status = None
 
     @property
     def doi(self):
@@ -23,9 +24,17 @@ class Publication:
         self.__title = title
 
     @property
-    def is_open(self):
-        return self.__is_open
+    def known_to_be_open(self):
+        return self.__known_to_be_open
 
-    @is_open.setter
-    def is_open(self, is_open):
-        self.__is_open = is_open
+    @known_to_be_open.setter
+    def known_to_be_open(self, known_to_be_open):
+        self.__known_to_be_open = known_to_be_open
+
+    @property
+    def open_access_status(self):
+        return self.__open_access_status
+
+    @open_access_status.setter
+    def open_access_status(self, open_access_status):
+        self.__open_access_status = open_access_status

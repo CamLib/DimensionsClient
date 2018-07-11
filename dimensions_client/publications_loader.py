@@ -16,7 +16,24 @@ class PublicationsLoader:
 
             if 'open_access' in publication_data:
 
-                current_publication.is_open = True
+                current_publication.known_to_be_open = True
+
+                if len(publication_data['open_access']) == 2:
+
+                    current_publication.open_access_status = publication_data['open_access'][1]
+
+                elif len(publication_data['open_access']) == 1:
+
+                    current_publication.open_access_status = "Open Access but source unknown"
+
+                else:
+
+                    print('Looks like Dimensions may have changed the Open Access information returned by their API')
+
+            else:
+
+                current_publication.open_access_status = 'NA'
+
 
             results.append(current_publication)
 

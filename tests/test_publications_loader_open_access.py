@@ -2,7 +2,7 @@ from dimensions_client.publications_loader import PublicationsLoader
 
 import json
 
-class TestPublicationsLoader:
+class TestPublicationsLoaderOpenAccess:
 
     def setup_method(self):
 
@@ -18,7 +18,7 @@ class TestPublicationsLoader:
 
         one_result_file.close()
 
-        assert results[0].is_open == True
+        assert results[0].known_to_be_open == True
 
     def test_one_result_doi(self):
 
@@ -44,7 +44,6 @@ class TestPublicationsLoader:
 
         assert results[0].title == "Surveillance Intervals for Small Abdominal Aortic Aneurysms: A Meta-analysis"
 
-
     def test_two_open_results(self):
 
         two_open_result_file = open('../files_in/two_open.json')
@@ -55,7 +54,7 @@ class TestPublicationsLoader:
 
         two_open_result_file.close()
 
-        assert results[1].is_open == True
+        assert results[1].known_to_be_open == True
 
     def test_two_closed_results(self):
 
@@ -67,7 +66,7 @@ class TestPublicationsLoader:
 
         two_closed_result_file.close()
 
-        assert results[1].is_open == False
+        assert results[1].known_to_be_open == False
 
     def test_ten_results_have_seven_open(self):
 
@@ -79,7 +78,7 @@ class TestPublicationsLoader:
 
         ten_result_file.close()
 
-        filtered_results = [open_results for open_results in results if open_results.is_open]
+        filtered_results = [open_results for open_results in results if open_results.known_to_be_open]
 
         assert len(filtered_results) == 7
 
@@ -93,7 +92,30 @@ class TestPublicationsLoader:
 
         twenty_result_file.close()
 
-        filtered_results = [open_results for open_results in results if not open_results.is_open]
+        filtered_results = [open_results for open_results in results if not open_results.known_to_be_open]
 
         assert len(filtered_results) == 6
 
+    def test_one_result_open_at_publisher(self):
+
+        one_result_file = open('../files_in/one_result.json')
+
+        one_result_data = json.load(one_result_file)
+
+        results = self.__test_publications_loader.load_publications(one_result_data)
+
+        one_result_file.close()
+
+        assert results[0].open_access_status == "Open Access at publisher"
+
+    def test_two_results_open_unknown(self):
+
+        two_open_result_file = open('../files_in/two_open.json')
+
+        two_open_result_data = json.load(two_open_result_file)
+
+        results = self.__test_publications_loader.load_publications(two_open_result_data)
+
+        two_open_result_file.close()
+
+        assert results[1].open_access_status == "Open Access but source unknown"
