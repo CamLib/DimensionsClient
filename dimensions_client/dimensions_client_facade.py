@@ -3,6 +3,7 @@ from dimensions_client.query_builder import QueryBuilder
 from dimensions_client.dimensions_request import DimensionsRequest
 from dimensions_client.publications_loader import PublicationsLoader
 from dimensions_client.output_writer_csv.csv_writer_publication import CSVWriterPublication
+from dimensions_client.throttle import Throttle
 
 import math
 
@@ -19,6 +20,8 @@ class DimensionsClientFacade:
         self.__doi_file_input_path = None
         self.__result_output_directory = None
         self.__result_output_base_filename = None
+        self.__request_window_size = None
+        self.__request_limit = None
 
         self.__missing_dois = []
         self.__error_list = []
@@ -96,6 +99,22 @@ class DimensionsClientFacade:
         self.__result_output_base_filename = result_output_basename
 
     @property
+    def request_window_size(self):
+        return self.__request_window_size
+
+    @request_window_size.setter
+    def request_window_size(self, window_size:int):
+        self.__request_window_size = window_size
+
+    @property
+    def request_limit(self):
+        return self.__request_limit
+
+    @request_limit.setter
+    def request_limit(self, request_limit:int):
+        self.__request_limit = request_limit
+
+    @property
     def missing_dois(self):
         return self.__missing_dois
 
@@ -123,12 +142,15 @@ class DimensionsClientFacade:
 
         query_builder = QueryBuilder()
 
+        throttle = Throttle(self.__request_window_size, self.__request_limit)
+
         dimensions_request = DimensionsRequest(self.__api_base_uri,
                                                 self.__api_auth_endpoint,
                                                 self.__api_dsl_endpoint,
                                                 self.__api_username,
                                                 self.__api_password,
-                                                query_builder)
+                                                query_builder,
+                                                throttle)
 
         publications_loader = PublicationsLoader()
 

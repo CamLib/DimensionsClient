@@ -1,6 +1,7 @@
 import requests
-import json
+import time
 from dimensions_client.query_builder import QueryBuilder
+from dimensions_client.throttle import Throttle
 
 class DimensionsRequest:
 
@@ -10,7 +11,8 @@ class DimensionsRequest:
                  api_dsl_endpoint,
                  api_username,
                  api_password,
-                 query_builder: QueryBuilder):
+                 query_builder: QueryBuilder,
+                 throttle: Throttle = None):
 
         self.__api_url = api_url
         self.__api_auth_endpoint = api_auth_endpoint
@@ -18,8 +20,12 @@ class DimensionsRequest:
         self.__api_username = api_username
         self.__api_password = api_password
         self.__query_builder = query_builder
+        self.__throttle = throttle
 
         self.__login_token = self.__login()
+
+        if self.__throttle is not None:
+            self.__throttle.start()
 
     @property
     def api_url(self):
@@ -127,6 +133,14 @@ class DimensionsRequest:
         result = None
 
         try:
+
+            if self.__throttle is not None:
+
+                wait_time = self.__throttle.check()
+
+                if int(wait_time) > 0:
+                    print("Request limit reached for this window. Sleeping for {0} seconds".format(wait_time))
+                    time.sleep(wait_time)
 
             #   Execute DSL query.
             resp = requests.post(

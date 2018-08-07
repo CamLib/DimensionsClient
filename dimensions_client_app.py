@@ -27,6 +27,8 @@ class DimensionsClient:
         dimensions_client_facade.doi_file_input_path = "{0}{1}".format(input_dir, input_file)
         dimensions_client_facade.result_output_directory = output_dir
         dimensions_client_facade.result_output_basename = output_files_root
+        dimensions_client_facade.request_window_size = int(config_data["app.dimensions.ai"]["RequestWindowSize"])
+        dimensions_client_facade.request_limit = int(config_data["app.dimensions.ai"]["RequestLimit"])
 
         dimensions_client_facade.execute()
 

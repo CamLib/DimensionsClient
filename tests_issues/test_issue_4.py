@@ -5,7 +5,7 @@ import configparser
 import os
 
 
-class TestFacadeEndToEnd:
+class TestIssue4:
 
     @classmethod
     def setup_class(self):
@@ -15,7 +15,7 @@ class TestFacadeEndToEnd:
         # is set properly in the test run configuration.
         # See https://www.jetbrains.com/help/pycharm/run-debug-configuration.html
 
-        _test_output_name_root = 'test_bare_minimum_end_to_end'
+        _test_output_name_root = 'test_issue_4'
         _files_out_directory = '../files_out/'
 
         # Delete the pre-existing output files if they are there
@@ -44,17 +44,15 @@ class TestFacadeEndToEnd:
         self.__test_dimensions_client_facade.api_username = config_data["app.dimensions.ai"]["APIUsername"]
         self.__test_dimensions_client_facade.api_password = config_data["app.dimensions.ai"]["APIPassword"]
         self.__test_dimensions_client_facade.batch_size = config_data["app.dimensions.ai"]["DOIBatchSize"]
-        self.__test_dimensions_client_facade.doi_file_input_path = '../files_in/test_dois.csv'
+        self.__test_dimensions_client_facade.doi_file_input_path = '../files_in/issue_4_dois.csv'
         self.__test_dimensions_client_facade.result_output_directory = _files_out_directory
         self.__test_dimensions_client_facade.result_output_basename = _test_output_name_root
-        self.__test_dimensions_client_facade.request_window_size = int(config_data["app.dimensions.ai"]["RequestWindowSize"])
-        self.__test_dimensions_client_facade.request_limit = int(config_data["app.dimensions.ai"]["RequestLimit"])
 
         self.__test_dimensions_client_facade.execute()
 
     def setup_method(self):
 
-        self._test_publications_output_file_path = '../files_out/test_bare_minimum_end_to_end_publications.csv'
+        self._test_publications_output_file_path = '../files_out/test_issue_4_publications.csv'
 
     def test_csv_writing_end_to_end_writes_publication_doi(self):
 
@@ -67,8 +65,3 @@ class TestFacadeEndToEnd:
                 if row['doi'] == '10.1001/jama.2013.950':
 
                     assert row['title'] == 'Surveillance Intervals for Small Abdominal Aortic Aneurysms: A Meta-analysis'
-
-    def test_missing_doi(self):
-
-        assert self.__test_dimensions_client_facade.missing_dois[0] == '666.999/test_missing_doi'
-

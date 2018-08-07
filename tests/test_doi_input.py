@@ -13,7 +13,7 @@ class TestDOIInputFileReader:
 
     def test_files_loaded(self):
 
-        assert self.__test_input_loader.loaded_doi_count == 23
+        assert self.__test_input_loader.loaded_doi_count == 24
 
     def test_get_first_five_returns_list_of_five(self):
 
@@ -55,7 +55,7 @@ class TestDOIInputFileReader:
 
             result = self.__test_input_loader.get_next(5)
 
-        assert len(result) == 3
+        assert len(result) == 4
 
     def test_first_doi_of_the_last_three(self):
 
